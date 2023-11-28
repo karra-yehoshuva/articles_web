@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include 'cdnlines.html' %}
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="offset-md-4 col-md-4">
+                <center><h3>Login Form</h3></center>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ loginform.as_p}}
+                    <center>
+                    <input type="submit" value="Login" class="btn btn-outline-success">
+                    <input type="reset" value="Clear" class="btn btn-outline-danger">
+                </center>
+                <a href="{% url 'registerview' %}">Register Here</a>
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include 'cdnlines.html' %}
+    
+
+</head>
+<body>
+
+    <div class="messages">
+        {% if messages %}
+            {% for message in messages%}
+                <p class="alert alert-{{message.tags}} text-center">
+                    {{message}}
+                </p>
+
+            {% endfor %}
+        {% endif %}
+
+    </div>
+
+    
+
+
+    
+    <div class="container-fluid">
+        
+        <div class="row">
+            {% include 'navbar.html' %}
+            
+
+                {% if article %}
+                {% for i in article %}
+
+                <div class="offset-md-1 col-md-10">
+                    <div class="img-thumbnail mt-3">
+                    <!-- {{ i.title }} -->
+                   <a href=" {% url 'Artical_detail' i.id i.slug %} "> {{ i.title|capfirst }}</a> <small style="float:right";>{{ i.created_date }}</small><br>
+                    Author : {{ i.author|capfirst}} <br>
+                    {{ i.body }}
+                   
+                </div>
+             
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <h5>{{ request.GET.query}} is not available</h5>
+                {% endif %}
+
+            
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="container-fluid">
+        <ul class="pagination justify-content-center">
+            {% if article.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&laquo;</a>
+                </li>
+            {% endif %}
+            {% for p in article.paginator.page_range %}
+                {% if article.number == p %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                {% elif p <= 3 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if article.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ article.next_page_number }}">&raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    
+
+    <!-- <div class="container-fluid">
+
+        <ul class="pagination justify-content-center">
+            {% if article.has_previous %}
+
+                <li class="page-item">
+
+                    <a class="page-link" href="?page = {{article.previous_page_number}} ">&laquo;</a>
+
+                </li>
+
+            {% endif %}
+
+            {% for p in article.paginator.page_range %}
+
+                {% if article.number == p %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+
+                    </li>
+
+
+                {% endif %}
+
+
+            {% endfor %}
+
+            {% if article.has_next %}
+
+                <li class="page-item">
+
+                    <a  class="page-link" href="?page={{article.next_page_number}}">&raquo;</a>
+
+                </li>
+
+
+            {% endif %}
+
+        </ul>
+
+    </div> -->
+</body>
+</html>

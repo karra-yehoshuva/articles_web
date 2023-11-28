@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+{% include 'cdnlines.html' %}
+
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+
+        <form method="POST">
+            {% csrf_token %}
+            <br>
+            {{ form.title}} <br>
+            <!-- {{ form.body|linebreaksbr }} -->
+            <p>{{ form.body }}</p>
+            <br>
+            <center>
+            <input type="submit" value="Update" class="btn btn-outline-success">
+            <input type="reset" value="Clear" class="btn btn-outline-danger">
+            </center>
+        </form>
+
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

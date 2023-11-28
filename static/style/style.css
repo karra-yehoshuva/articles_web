@@ -1,0 +1,8 @@
+p {
+    white-space: nowrap; /* This would prevent line breaks */
+}
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10px;
+    color: red;
+}
