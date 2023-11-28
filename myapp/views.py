@@ -11,6 +11,8 @@ from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 
 
 # Create your views here.
+def new_future(request):
+    pass
 
 def article_list(request):
     query = request.GET.get('query')
